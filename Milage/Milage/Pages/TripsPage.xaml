@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Milage.Pages.TripsPage"
+             Title="Trips"
+             BackgroundColor="#ffffff"
+             IconImageSource="@drawable/motowheel.png">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Delete All"
+                     Clicked="OnToolBarDelete_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
+        <Picker Grid.Row="0" x:Name="MonthPicker"
+                FontSize="Large" 
+                HorizontalOptions="Center"
+                SelectedIndexChanged="MonthPicker_SelectedIndexChanged"
+                Title="Mon"
+                />
+        <ListView Grid.Row="1" x:Name="TripList"
+              Margin="20"
+              ItemSelected="TripList_ItemSelected"
+                  SeparatorVisibility="Default"
+                  SeparatorColor="Black">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell
+                    Text="{Binding Location}"
+                    Detail="{Binding Kilometers, StringFormat='{0} km'}">
+                    </TextCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Label x:Name="TotalDistance"
+               Margin="10"
+               Grid.Row="2"
+               Text="Total: 0 km"
+               TextColor="#000000"
+               HorizontalOptions="Start"
+               FontSize="Large"
+               FontAttributes="Bold"/>
+        <Button Margin="20" HorizontalOptions="End" VerticalOptions="Center"
+                Text="+"
+                Grid.Row="2"
+                HeightRequest="50"
+                WidthRequest="50"
+                CornerRadius="25"
+                TextColor="#ffffff"
+                BackgroundColor="#2962ff"
+                FontSize="Large"
+                FontAttributes="Bold"
+                Clicked="OnTripAdd_Clicked"/>
+    </Grid>
+    
+</ContentPage>
